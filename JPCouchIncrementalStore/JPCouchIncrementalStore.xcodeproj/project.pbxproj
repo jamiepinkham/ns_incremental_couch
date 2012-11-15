@@ -128,6 +128,7 @@
 		7D8EBFD416555BF8009F495E /* JPCouchIncrementalStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPCouchIncrementalStore.m; sourceTree = "<group>"; };
 		7D8EC018165560A7009F495E /* TouchDB.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TouchDB.xcodeproj; path = "../Externals/TouchDB-iOS/TouchDB.xcodeproj"; sourceTree = "<group>"; };
 		7D8EC04B16556161009F495E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		7D8EC04D16556720009F495E /* JPCouchIncrementalStoreDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPCouchIncrementalStoreDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +177,7 @@
 				7D8EBFD216555BF8009F495E /* JPCouchIncrementalStore.h */,
 				7D8EBFD416555BF8009F495E /* JPCouchIncrementalStore.m */,
 				7D8EBFD016555BF8009F495E /* Supporting Files */,
+				7D8EC04D16556720009F495E /* JPCouchIncrementalStoreDelegate.h */,
 			);
 			path = JPCouchIncrementalStore;
 			sourceTree = "<group>";

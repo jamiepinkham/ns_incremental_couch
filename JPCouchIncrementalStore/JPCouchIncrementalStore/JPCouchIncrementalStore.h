@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "JPCouchIncrementalStoreDelegate.h"
 
 @interface JPCouchIncrementalStore : NSIncrementalStore
+
+@property (nonatomic, assign) id<JPCouchIncrementalStoreDelegate> delegate;
 
 @end
