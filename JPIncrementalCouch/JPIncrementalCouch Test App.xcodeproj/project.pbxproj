@@ -25,15 +25,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7D8EBF8D16555B4B009F495E /* JPIncrementalCouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JPIncrementalCouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D8EBF8D16555B4B009F495E /* JPIncrementalCouch Test App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JPIncrementalCouch Test App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D8EBF9116555B4B009F495E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7D8EBF9316555B4B009F495E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7D8EBF9516555B4B009F495E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7D8EBF9716555B4B009F495E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		7D8EBF9B16555B4B009F495E /* JPIncrementalCouch-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JPIncrementalCouch-Info.plist"; sourceTree = "<group>"; };
+		7D8EBF9B16555B4B009F495E /* JPIncrementalCouch Test App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JPIncrementalCouch Test App-Info.plist"; sourceTree = "<group>"; };
 		7D8EBF9D16555B4B009F495E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7D8EBF9F16555B4B009F495E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		7D8EBFA116555B4B009F495E /* JPIncrementalCouch-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JPIncrementalCouch-Prefix.pch"; sourceTree = "<group>"; };
+		7D8EBFA116555B4B009F495E /* JPIncrementalCouch Test App-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JPIncrementalCouch Test App-Prefix.pch"; sourceTree = "<group>"; };
 		7D8EBFA216555B4B009F495E /* JPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPAppDelegate.h; sourceTree = "<group>"; };
 		7D8EBFA316555B4B009F495E /* JPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPAppDelegate.m; sourceTree = "<group>"; };
 		7D8EBFA516555B4B009F495E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -75,7 +75,7 @@
 		7D8EBF8E16555B4B009F495E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7D8EBF8D16555B4B009F495E /* JPIncrementalCouch.app */,
+				7D8EBF8D16555B4B009F495E /* JPIncrementalCouch Test App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -111,10 +111,10 @@
 		7D8EBF9A16555B4B009F495E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7D8EBF9B16555B4B009F495E /* JPIncrementalCouch-Info.plist */,
+				7D8EBF9B16555B4B009F495E /* JPIncrementalCouch Test App-Info.plist */,
 				7D8EBF9C16555B4B009F495E /* InfoPlist.strings */,
 				7D8EBF9F16555B4B009F495E /* main.m */,
-				7D8EBFA116555B4B009F495E /* JPIncrementalCouch-Prefix.pch */,
+				7D8EBFA116555B4B009F495E /* JPIncrementalCouch Test App-Prefix.pch */,
 				7D8EBFA516555B4B009F495E /* Default.png */,
 				7D8EBFA716555B4B009F495E /* Default@2x.png */,
 				7D8EBFA916555B4C009F495E /* Default-568h@2x.png */,
@@ -125,9 +125,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7D8EBF8C16555B4B009F495E /* JPIncrementalCouch */ = {
+		7D8EBF8C16555B4B009F495E /* JPIncrementalCouch Test App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7D8EBFBC16555B4C009F495E /* Build configuration list for PBXNativeTarget "JPIncrementalCouch" */;
+			buildConfigurationList = 7D8EBFBC16555B4C009F495E /* Build configuration list for PBXNativeTarget "JPIncrementalCouch Test App" */;
 			buildPhases = (
 				7D8EBF8916555B4B009F495E /* Sources */,
 				7D8EBF8A16555B4B009F495E /* Frameworks */,
@@ -137,9 +137,9 @@
 			);
 			dependencies = (
 			);
-			name = JPIncrementalCouch;
+			name = "JPIncrementalCouch Test App";
 			productName = JPIncrementalCouch;
-			productReference = 7D8EBF8D16555B4B009F495E /* JPIncrementalCouch.app */;
+			productReference = 7D8EBF8D16555B4B009F495E /* JPIncrementalCouch Test App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -152,7 +152,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Jamie Pinkham";
 			};
-			buildConfigurationList = 7D8EBF8716555B4B009F495E /* Build configuration list for PBXProject "JPIncrementalCouch" */;
+			buildConfigurationList = 7D8EBF8716555B4B009F495E /* Build configuration list for PBXProject "JPIncrementalCouch Test App" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -164,7 +164,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7D8EBF8C16555B4B009F495E /* JPIncrementalCouch */,
+				7D8EBF8C16555B4B009F495E /* JPIncrementalCouch Test App */,
 			);
 		};
 /* End PBXProject section */
@@ -282,9 +282,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JPIncrementalCouch/JPIncrementalCouch-Prefix.pch";
-				INFOPLIST_FILE = "JPIncrementalCouch/JPIncrementalCouch-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "JPIncrementalCouch/JPIncrementalCouch Test App-Prefix.pch";
+				INFOPLIST_FILE = "JPIncrementalCouch/JPIncrementalCouch Test App-Info.plist";
+				PRODUCT_NAME = "JPIncrementalCouch Test App";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -293,9 +293,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JPIncrementalCouch/JPIncrementalCouch-Prefix.pch";
-				INFOPLIST_FILE = "JPIncrementalCouch/JPIncrementalCouch-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "JPIncrementalCouch/JPIncrementalCouch Test App-Prefix.pch";
+				INFOPLIST_FILE = "JPIncrementalCouch/JPIncrementalCouch Test App-Info.plist";
+				PRODUCT_NAME = "JPIncrementalCouch Test App";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -303,7 +303,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7D8EBF8716555B4B009F495E /* Build configuration list for PBXProject "JPIncrementalCouch" */ = {
+		7D8EBF8716555B4B009F495E /* Build configuration list for PBXProject "JPIncrementalCouch Test App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7D8EBFBA16555B4C009F495E /* Debug */,
@@ -312,13 +312,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7D8EBFBC16555B4C009F495E /* Build configuration list for PBXNativeTarget "JPIncrementalCouch" */ = {
+		7D8EBFBC16555B4C009F495E /* Build configuration list for PBXNativeTarget "JPIncrementalCouch Test App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7D8EBFBD16555B4C009F495E /* Debug */,
 				7D8EBFBE16555B4C009F495E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
