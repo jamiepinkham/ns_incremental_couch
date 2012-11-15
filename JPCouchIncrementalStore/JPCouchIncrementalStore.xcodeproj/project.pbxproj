@@ -12,6 +12,100 @@
 		7D8EBFD516555BF8009F495E /* JPCouchIncrementalStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EBFD416555BF8009F495E /* JPCouchIncrementalStore.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7D8EBFFC16555C91009F495E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D8EBFE316555C90009F495E /* TouchDB.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 270B3DEA1489359000E0A926;
+			remoteInfo = TouchDB;
+		};
+		7D8EBFFE16555C91009F495E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D8EBFE316555C90009F495E /* TouchDB.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 275315D514ACF0A10065964D;
+			remoteInfo = TouchDBListener;
+		};
+		7D8EC00016555C91009F495E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D8EBFE316555C90009F495E /* TouchDB.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 270B3DFB1489359000E0A926;
+			remoteInfo = TouchDBTests;
+		};
+		7D8EC00216555C91009F495E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D8EBFE316555C90009F495E /* TouchDB.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27C70694148864BA00F0F099;
+			remoteInfo = "TouchDB Demo";
+		};
+		7D8EC00416555C91009F495E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D8EBFE316555C90009F495E /* TouchDB.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DD76F6C0486A84900D96B5E;
+			remoteInfo = Tests;
+		};
+		7D8EC00616555C91009F495E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D8EBFE316555C90009F495E /* TouchDB.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27B0B7A91492B83B00A817AD;
+			remoteInfo = "iOS Library";
+		};
+		7D8EC00816555C91009F495E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D8EBFE316555C90009F495E /* TouchDB.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27B0B7B61492B83B00A817AD;
+			remoteInfo = TouchDBiOSTests;
+		};
+		7D8EC00A16555C91009F495E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D8EBFE316555C90009F495E /* TouchDB.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27B0B7E71492BB6B00A817AD;
+			remoteInfo = "iOS Framework";
+		};
+		7D8EC00C16555C91009F495E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D8EBFE316555C90009F495E /* TouchDB.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27B0B80B1492C16300A817AD;
+			remoteInfo = "iOS Demo";
+		};
+		7D8EC00E16555C91009F495E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D8EBFE316555C90009F495E /* TouchDB.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27731F2A1495CFEF00815D67;
+			remoteInfo = "iOS Empty App";
+		};
+		7D8EC01016555C91009F495E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D8EBFE316555C90009F495E /* TouchDB.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA023B6414BCA94C008184BB;
+			remoteInfo = "Listener iOS Library";
+		};
+		7D8EC01216555C91009F495E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D8EBFE316555C90009F495E /* TouchDB.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA147C3614BCAC3B0052DA4D;
+			remoteInfo = "Listener iOS Framework";
+		};
+		7D8EC01416555C91009F495E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D8EBFE316555C90009F495E /* TouchDB.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 270FE0C814C5008C005FF647;
+			remoteInfo = TouchServ;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		7D8EBFC816555BF8009F495E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -31,6 +125,7 @@
 		7D8EBFD116555BF8009F495E /* JPCouchIncrementalStore-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JPCouchIncrementalStore-Prefix.pch"; sourceTree = "<group>"; };
 		7D8EBFD216555BF8009F495E /* JPCouchIncrementalStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPCouchIncrementalStore.h; sourceTree = "<group>"; };
 		7D8EBFD416555BF8009F495E /* JPCouchIncrementalStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPCouchIncrementalStore.m; sourceTree = "<group>"; };
+		7D8EBFE316555C90009F495E /* TouchDB.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TouchDB.xcodeproj; path = "../Externals/TouchDB-iOS/TouchDB.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +143,7 @@
 		7D8EBFBF16555BF8009F495E = {
 			isa = PBXGroup;
 			children = (
+				7D8EBFE316555C90009F495E /* TouchDB.xcodeproj */,
 				7D8EBFCF16555BF8009F495E /* JPCouchIncrementalStore */,
 				7D8EBFCC16555BF8009F495E /* Frameworks */,
 				7D8EBFCB16555BF8009F495E /* Products */,
@@ -86,6 +182,26 @@
 				7D8EBFD116555BF8009F495E /* JPCouchIncrementalStore-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7D8EBFE416555C90009F495E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7D8EBFFD16555C91009F495E /* TouchDB.framework */,
+				7D8EBFFF16555C91009F495E /* TouchDBListener.framework */,
+				7D8EC00116555C91009F495E /* TouchDBTests.octest */,
+				7D8EC00316555C91009F495E /* TouchDB Demo.app */,
+				7D8EC00516555C91009F495E /* TouchDB */,
+				7D8EC00716555C91009F495E /* libTouchDB.a */,
+				7D8EC00916555C91009F495E /* TouchDBiOSTests.octest */,
+				7D8EC00B16555C91009F495E /* TouchDB.framework */,
+				7D8EC00D16555C91009F495E /* TouchDB Demo.app */,
+				7D8EC00F16555C91009F495E /* TouchDB Empty App.app */,
+				7D8EC01116555C91009F495E /* libTouchDBListener.a */,
+				7D8EC01316555C91009F495E /* TouchDBListener.framework */,
+				7D8EC01516555C91009F495E /* TouchServ */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,12 +243,112 @@
 			mainGroup = 7D8EBFBF16555BF8009F495E;
 			productRefGroup = 7D8EBFCB16555BF8009F495E /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 7D8EBFE416555C90009F495E /* Products */;
+					ProjectRef = 7D8EBFE316555C90009F495E /* TouchDB.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				7D8EBFC916555BF8009F495E /* JPCouchIncrementalStore */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		7D8EBFFD16555C91009F495E /* TouchDB.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TouchDB.framework;
+			remoteRef = 7D8EBFFC16555C91009F495E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7D8EBFFF16555C91009F495E /* TouchDBListener.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TouchDBListener.framework;
+			remoteRef = 7D8EBFFE16555C91009F495E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7D8EC00116555C91009F495E /* TouchDBTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = TouchDBTests.octest;
+			remoteRef = 7D8EC00016555C91009F495E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7D8EC00316555C91009F495E /* TouchDB Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "TouchDB Demo.app";
+			remoteRef = 7D8EC00216555C91009F495E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7D8EC00516555C91009F495E /* TouchDB */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = TouchDB;
+			remoteRef = 7D8EC00416555C91009F495E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7D8EC00716555C91009F495E /* libTouchDB.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTouchDB.a;
+			remoteRef = 7D8EC00616555C91009F495E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7D8EC00916555C91009F495E /* TouchDBiOSTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = TouchDBiOSTests.octest;
+			remoteRef = 7D8EC00816555C91009F495E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7D8EC00B16555C91009F495E /* TouchDB.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = TouchDB.framework;
+			remoteRef = 7D8EC00A16555C91009F495E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7D8EC00D16555C91009F495E /* TouchDB Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "TouchDB Demo.app";
+			remoteRef = 7D8EC00C16555C91009F495E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7D8EC00F16555C91009F495E /* TouchDB Empty App.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "TouchDB Empty App.app";
+			remoteRef = 7D8EC00E16555C91009F495E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7D8EC01116555C91009F495E /* libTouchDBListener.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTouchDBListener.a;
+			remoteRef = 7D8EC01016555C91009F495E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7D8EC01316555C91009F495E /* TouchDBListener.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = TouchDBListener.framework;
+			remoteRef = 7D8EC01216555C91009F495E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7D8EC01516555C91009F495E /* TouchServ */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = TouchServ;
+			remoteRef = 7D8EC01416555C91009F495E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7D8EBFC616555BF8009F495E /* Sources */ = {
@@ -236,6 +452,7 @@
 				7D8EBFDA16555BF8009F495E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
