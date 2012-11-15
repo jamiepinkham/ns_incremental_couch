@@ -10,6 +10,7 @@
 		7D8EBFCE16555BF8009F495E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D8EBFCD16555BF8009F495E /* Foundation.framework */; };
 		7D8EBFD316555BF8009F495E /* JPCouchIncrementalStore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D8EBFD216555BF8009F495E /* JPCouchIncrementalStore.h */; };
 		7D8EBFD516555BF8009F495E /* JPCouchIncrementalStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EBFD416555BF8009F495E /* JPCouchIncrementalStore.m */; };
+		7D8EC04C16556161009F495E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D8EC04B16556161009F495E /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +127,7 @@
 		7D8EBFD216555BF8009F495E /* JPCouchIncrementalStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPCouchIncrementalStore.h; sourceTree = "<group>"; };
 		7D8EBFD416555BF8009F495E /* JPCouchIncrementalStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPCouchIncrementalStore.m; sourceTree = "<group>"; };
 		7D8EC018165560A7009F495E /* TouchDB.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TouchDB.xcodeproj; path = "../Externals/TouchDB-iOS/TouchDB.xcodeproj"; sourceTree = "<group>"; };
+		7D8EC04B16556161009F495E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D8EC04C16556161009F495E /* CoreData.framework in Frameworks */,
 				7D8EBFCE16555BF8009F495E /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +146,7 @@
 		7D8EBFBF16555BF8009F495E = {
 			isa = PBXGroup;
 			children = (
+				7D8EC04B16556161009F495E /* CoreData.framework */,
 				7D8EC018165560A7009F495E /* TouchDB.xcodeproj */,
 				7D8EBFCF16555BF8009F495E /* JPCouchIncrementalStore */,
 				7D8EBFCC16555BF8009F495E /* Frameworks */,
