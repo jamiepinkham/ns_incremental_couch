@@ -7,6 +7,25 @@
 //
 
 #import "JPCouchIncrementalStore.h"
+#import "NSManagedObject+JPCouchIncrementalStoreRev.h"
+
+#import <TouchDB/TouchDB.h>
+
+@interface JPCouchIncrementalStore ()
+
+@property (nonatomic, retain) NSNumber *replicationInterval;
+@property (nonatomic, retain) NSURL *canoncialStoreURL;
+@property (nonatomic, retain) NSString *databaseName;
+
+@end
+
+NSString * const JPCouchIncrementalStoreCanonicalLocation = @"com.jamiepinkham.JPCouchIncrementalStoreCanonicalLocation";
+NSString * const JPCouchIncrementalStoreReplicationInterval = @"com.jamiepinkham.JPCouchIncrementalStoreCanonicalLocation";
+NSString * const JPCouchIncrementalStoreDatabaseName = @"com.jamiepinkham.JPCouchIncrementalStoreDatabaseName";
+
+NSString * const JPCouchIncrementalStoreConflictNotification = @"com.jamiepinkham.JPCouchIncrementalStoreConflictNotification";
+NSString * const JPCouchIncrementalStoreConflictManagedObjectIdsUserInfoKey = @"com.jamiepinkham.JPCouchIncrementalStoreConflictManagedObjectIdsUserInfoKey";
+
 
 @implementation JPCouchIncrementalStore
 
@@ -26,6 +45,30 @@
 	CFStringRef string = CFUUIDCreateString(NULL, theUUID);
 	CFRelease(theUUID);
 	return (__bridge_transfer NSString *)string;
+}
+
+- (instancetype)initWithPersistentStoreCoordinator:(NSPersistentStoreCoordinator *)root configurationName:(NSString *)name URL:(NSURL *)url options:(NSDictionary *)options
+{
+	self = [super initWithPersistentStoreCoordinator:root configurationName:name URL:url options:options];
+	if(self)
+	{
+		[self setCanoncialStoreURL:[options objectForKey:JPCouchIncrementalStoreCanonicalLocation]];
+		[self setReplicationInterval:[options objectForKey:JPCouchIncrementalStoreReplicationInterval]];
+		
+		NSString *databaseName = nil;
+		
+		if([options objectForKey:JPCouchIncrementalStoreDatabaseName])
+		{
+			databaseName = [options objectForKey:JPCouchIncrementalStoreDatabaseName];
+		}
+		else
+		{
+			databaseName = [self generateUUID];
+		}
+		
+		[self setDatabaseName:databaseName];
+	}
+	return self;
 }
 
 - (BOOL)loadMetadata:(NSError *__autoreleasing *)error
