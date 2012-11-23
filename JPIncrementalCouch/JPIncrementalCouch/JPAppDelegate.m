@@ -111,7 +111,7 @@
         return _persistentStoreCoordinator;
     }
     
-    NSURL *storeURL = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"JPIncrementalCouch.sqlite"] absoluteURL];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"JPIncrementalCouch.sqlite"];
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
