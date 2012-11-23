@@ -11,6 +11,6 @@
 @implementation JPCouchManagedObject
 
 @synthesize revisionID;
-@synthesize documentID;
+//@synthesize documentID;
 
 @end

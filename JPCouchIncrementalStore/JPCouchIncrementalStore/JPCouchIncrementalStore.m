@@ -230,13 +230,12 @@ NSString * const JPCouchIncrementalStoreCDObjectIDPropertyName = @"com.jamiepink
 			NSDictionary *attributeValues = [self encodeAttributesForObject:couchUpdatedObject];
 
 			NSString *previousRevision = [updatedObject valueForKey:@"revisionID"];
-			NSString *documentID = [updatedObject valueForKey:@"documentID"];
+			NSString *documentID = [self referenceObjectForObjectID:[updatedObject objectID]];
 			TD_Revision *rev = [[TD_Revision alloc] initWithDocID:documentID revID:previousRevision deleted:NO];
 			[rev setBody:[TD_Body bodyWithProperties:attributeValues]];
 			TDStatus status;
 			TD_Revision* result = [[self couchDB] putRevision: rev prevRevisionID:previousRevision allowConflict: NO status: &status];
 			[updatedObject setValue:result.revID forKey:@"revisionID"];
-			[updatedObject setValue:result.docID forKey:@"documentID"];
 		}
 
 	}
@@ -245,10 +244,10 @@ NSString * const JPCouchIncrementalStoreCDObjectIDPropertyName = @"com.jamiepink
 	{
 		JPCouchManagedObject *couchDeletedObject = (JPCouchManagedObject *)deletedObject;
 		
-		if([couchDeletedObject valueForKey:@"revisionID"] && [couchDeletedObject valueForKey:@"documentID"])
+		if([couchDeletedObject valueForKey:@"revisionID"])
 		{
 			NSString *previousRevision = [couchDeletedObject valueForKey:@"revisionID"];
-			NSString *documentID = [couchDeletedObject valueForKey:@"documentID"];
+			NSString *documentID = [self referenceObjectForObjectID:[couchDeletedObject objectID]];
 			TD_Revision *rev = [[TD_Revision alloc] initWithDocID:documentID revID:previousRevision deleted:YES];
 			TDStatus status;
 			TD_Revision* result = [[self couchDB] putRevision: rev prevRevisionID:previousRevision allowConflict: NO status: &status];
@@ -278,7 +277,7 @@ NSString * const JPCouchIncrementalStoreCDObjectIDPropertyName = @"com.jamiepink
 	}
 	[attributeValues setObject:[[mo entity] name] forKey:JPCouchIncrementalStoreCDEntityPropertyName];
 	NSString *moIdString = [self referenceObjectForObjectID:[mo objectID]];
-	[attributeValues setObject:moIdString forKey:JPCouchIncrementalStoreCDObjectIDPropertyName];
+	[attributeValues setObject:moIdString forKey:@"_id"];
 	return attributeValues;
 }
 
@@ -300,7 +299,7 @@ static NSDateFormatter * dateFormatter()
 	for(NSDictionary *dictionary in rows)
 	{
 		NSDictionary *doc = dictionary[@"value"];
-		NSString *moIDProperty = doc[JPCouchIncrementalStoreCDObjectIDPropertyName];
+		NSString *moIDProperty = doc[@"_id"];
 		NSManagedObjectID *moID = [self newObjectIDForEntity:entity referenceObject:moIDProperty];
 		NSManagedObject *object = [context objectWithID:moID];
 		NSDictionary *attributesDictionary = [entity attributesByName];
@@ -323,7 +322,6 @@ static NSDateFormatter * dateFormatter()
 		[[self cachedPropertiesForObjects] setValue:cachedProperties forKey:moIDProperty];
 		
 		[object setValue:doc[@"_rev"] forKey:@"revisionID"];
-		[object setValue:doc[@"_id"] forKey:@"documentID"];
 		[objects addObject:object];
 	}
 	return objects;
