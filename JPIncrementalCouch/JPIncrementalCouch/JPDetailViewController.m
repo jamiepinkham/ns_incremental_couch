@@ -39,6 +39,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	[self.detailItem setValue:[NSDate date] forKey:@"timeStamp"];
+	[[self.detailItem managedObjectContext] save:NULL];
 	[self configureView];
 }
 

@@ -10,6 +10,7 @@
 #import "JPCouchManagedObject.h"
 #import <TouchDB/TouchDB.h>
 #import <TouchDB/TD_Database+Insertion.h>
+#import <TouchDB/TD_Body.h>
 
 @interface JPCouchIncrementalStore ()
 
@@ -227,14 +228,16 @@ NSString * const JPCouchIncrementalStoreCDObjectIDPropertyName = @"com.jamiepink
 		if([couchUpdatedObject valueForKey:@"revisionID"])
 		{
 			NSDictionary *attributeValues = [self encodeAttributesForObject:couchUpdatedObject];
+
 			NSString *previousRevision = [updatedObject valueForKey:@"revisionID"];
-			TD_Revision *rev = [[TD_Revision alloc] initWithProperties:attributeValues];
+			NSString *documentID = [updatedObject valueForKey:@"documentID"];
+			TD_Revision *rev = [[TD_Revision alloc] initWithDocID:documentID revID:previousRevision deleted:NO];
+			[rev setBody:[TD_Body bodyWithProperties:attributeValues]];
 			TDStatus status;
 			TD_Revision* result = [[self couchDB] putRevision: rev prevRevisionID:previousRevision allowConflict: NO status: &status];
 			[updatedObject setValue:result.revID forKey:@"revisionID"];
 			[updatedObject setValue:result.docID forKey:@"documentID"];
 		}
-//		NSLog(@"updated result = %@", result);
 
 	}
 	
@@ -273,12 +276,9 @@ NSString * const JPCouchIncrementalStoreCDObjectIDPropertyName = @"com.jamiepink
 			attributeValues[key] = formattedDate;
 		}
 	}
-	if([mo isInserted])
-	{
-		[attributeValues setObject:[[mo entity] name] forKey:JPCouchIncrementalStoreCDEntityPropertyName];
-		NSString *moIdString = [self referenceObjectForObjectID:[mo objectID]];
-		[attributeValues setObject:moIdString forKey:JPCouchIncrementalStoreCDObjectIDPropertyName];
-	}
+	[attributeValues setObject:[[mo entity] name] forKey:JPCouchIncrementalStoreCDEntityPropertyName];
+	NSString *moIdString = [self referenceObjectForObjectID:[mo objectID]];
+	[attributeValues setObject:moIdString forKey:JPCouchIncrementalStoreCDObjectIDPropertyName];
 	return attributeValues;
 }
 
@@ -289,7 +289,7 @@ static NSDateFormatter * dateFormatter()
 	if(formatter == nil)
 	{
 		formatter = [[NSDateFormatter alloc] init];
-		[formatter setDateFormat:@"yyyy-MM-dd'T'HH:mmZ"];
+		[formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
 	}
 	return formatter;
 }
@@ -320,7 +320,7 @@ static NSDateFormatter * dateFormatter()
 			
 			[cachedProperties setValue:value forKey:attributeKey];
 		}
-		[[self cachedPropertiesForObjects] setValue:cachedProperties forKey:[self referenceObjectForObjectID:moID]];
+		[[self cachedPropertiesForObjects] setValue:cachedProperties forKey:moIDProperty];
 		
 		[object setValue:doc[@"_rev"] forKey:@"revisionID"];
 		[object setValue:doc[@"_id"] forKey:@"documentID"];
