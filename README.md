@@ -17,7 +17,7 @@ todo
 data type
 =========
 
-typedef enum {
+```typedef enum {
 NSUndefinedAttributeType = 0,
 NSInteger16AttributeType = 100,
 NSInteger32AttributeType = 200,
@@ -32,6 +32,6 @@ NSBinaryDataAttributeType = 1000,
 NSTransformableAttributeType = 1800,
 NSObjectIDAttributeType = 2000
 } NSAttributeType;
-
+`
 6. handle replication
 
