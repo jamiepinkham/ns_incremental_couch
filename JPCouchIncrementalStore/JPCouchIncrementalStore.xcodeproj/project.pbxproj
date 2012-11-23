@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D5C8F1116600CFF0014960C /* JPCouchManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D5C8F1016600CFF0014960C /* JPCouchManagedObject.m */; };
+		7D5C8F15166011BA0014960C /* JPCouchManagedObject.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D5C8F0F16600CFF0014960C /* JPCouchManagedObject.h */; };
 		7D8EBFCE16555BF8009F495E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D8EBFCD16555BF8009F495E /* Foundation.framework */; };
 		7D8EBFD316555BF8009F495E /* JPCouchIncrementalStore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D8EBFD216555BF8009F495E /* JPCouchIncrementalStore.h */; };
 		7D8EBFD516555BF8009F495E /* JPCouchIncrementalStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EBFD416555BF8009F495E /* JPCouchIncrementalStore.m */; };
 		7D8EC04C16556161009F495E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D8EC04B16556161009F495E /* CoreData.framework */; };
-		7D8EC05016556A3E009F495E /* NSManagedObject+JPCouchIncrementalStoreRev.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EC04F16556A3E009F495E /* NSManagedObject+JPCouchIncrementalStoreRev.m */; };
 		7DD108C8165D4AF9005BA0E1 /* libTouchDB.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DD1084A165D4133005BA0E1 /* libTouchDB.a */; };
 /* End PBXBuildFile section */
 
@@ -123,6 +124,7 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
+				7D5C8F15166011BA0014960C /* JPCouchManagedObject.h in CopyFiles */,
 				7D8EBFD316555BF8009F495E /* JPCouchIncrementalStore.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,6 +132,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7D5C8F0F16600CFF0014960C /* JPCouchManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPCouchManagedObject.h; sourceTree = "<group>"; };
+		7D5C8F1016600CFF0014960C /* JPCouchManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPCouchManagedObject.m; sourceTree = "<group>"; };
 		7D8EBFCA16555BF8009F495E /* libJPCouchIncrementalStore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJPCouchIncrementalStore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D8EBFCD16555BF8009F495E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7D8EBFD116555BF8009F495E /* JPCouchIncrementalStore-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JPCouchIncrementalStore-Prefix.pch"; sourceTree = "<group>"; };
@@ -137,8 +141,6 @@
 		7D8EBFD416555BF8009F495E /* JPCouchIncrementalStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPCouchIncrementalStore.m; sourceTree = "<group>"; };
 		7D8EC04B16556161009F495E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7D8EC04D16556720009F495E /* JPCouchIncrementalStoreDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPCouchIncrementalStoreDelegate.h; sourceTree = "<group>"; };
-		7D8EC04E16556A3E009F495E /* NSManagedObject+JPCouchIncrementalStoreRev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+JPCouchIncrementalStoreRev.h"; sourceTree = "<group>"; };
-		7D8EC04F16556A3E009F495E /* NSManagedObject+JPCouchIncrementalStoreRev.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+JPCouchIncrementalStoreRev.m"; sourceTree = "<group>"; };
 		7DD10826165D4132005BA0E1 /* TouchDB.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TouchDB.xcodeproj; path = "../Externals/TouchDB-iOS/TouchDB.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -191,8 +193,8 @@
 				7D8EBFD416555BF8009F495E /* JPCouchIncrementalStore.m */,
 				7D8EBFD016555BF8009F495E /* Supporting Files */,
 				7D8EC04D16556720009F495E /* JPCouchIncrementalStoreDelegate.h */,
-				7D8EC04E16556A3E009F495E /* NSManagedObject+JPCouchIncrementalStoreRev.h */,
-				7D8EC04F16556A3E009F495E /* NSManagedObject+JPCouchIncrementalStoreRev.m */,
+				7D5C8F0F16600CFF0014960C /* JPCouchManagedObject.h */,
+				7D5C8F1016600CFF0014960C /* JPCouchManagedObject.m */,
 			);
 			path = JPCouchIncrementalStore;
 			sourceTree = "<group>";
@@ -385,7 +387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D8EBFD516555BF8009F495E /* JPCouchIncrementalStore.m in Sources */,
-				7D8EC05016556A3E009F495E /* NSManagedObject+JPCouchIncrementalStoreRev.m in Sources */,
+				7D5C8F1116600CFF0014960C /* JPCouchManagedObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
