@@ -154,6 +154,9 @@
     NSArray *sortDescriptors = @[sortDescriptor];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
+	
+//	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"timeStamp < %@", [NSDate date]];
+//	[fetchRequest setPredicate:predicate];
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".

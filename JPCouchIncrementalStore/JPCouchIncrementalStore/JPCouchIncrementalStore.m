@@ -86,7 +86,7 @@ NSString * const JPCouchIncrementalStoreCDObjectIDPropertyName = @"com.jamiepink
 		TD_Database *db = [[TD_Database alloc] initWithPath:[url path]];
 		[self setCouchDB:db];
 		
-		[self generateViewsForManagedObjectsInManagedObjectModel:[root managedObjectModel]];
+//		[self generateViewsForManagedObjectsInManagedObjectModel:[root managedObjectModel]];
 	}
 	return self;
 }
@@ -162,24 +162,6 @@ NSString * const JPCouchIncrementalStoreCDObjectIDPropertyName = @"com.jamiepink
 
 #pragma mark - view generation
 
-- (void)generateViewsForManagedObjectsInManagedObjectModel:(NSManagedObjectModel *)managedObjectModel
-{
-	for(NSEntityDescription *entityDescription in managedObjectModel)
-	{
-		TD_View *view = [[self couchDB] viewNamed:[entityDescription name]];
-		[view setMapBlock:^(NSDictionary *doc, TDMapEmitBlock emit) {
-			if(doc && doc[JPCouchIncrementalStoreCDEntityPropertyName])
-			{
-				if([doc[JPCouchIncrementalStoreCDEntityPropertyName] isEqualToString:[entityDescription name]])
-				{
-					emit(doc[@"_id"], doc);
-				}
-			}
-		} reduceBlock:NULL version:@"1.0"];
-		
-	}
-}
-
 
 #pragma mark - request executions
 
@@ -187,7 +169,31 @@ NSString * const JPCouchIncrementalStoreCDObjectIDPropertyName = @"com.jamiepink
 {
 	TDQueryOptions options = kDefaultTDQueryOptions;
 	
+	if([fetchRequest fetchLimit] > 0)
+	{
+		options.limit = [fetchRequest fetchLimit];
+	}
+	
+	if([fetchRequest fetchOffset] > 0)
+	{
+		
+	}
+	
 	TD_View *view = [[self couchDB] viewNamed:[fetchRequest entityName]];
+	
+	[view setMapBlock:^(NSDictionary *doc, TDMapEmitBlock emit) {
+		if(doc && doc[JPCouchIncrementalStoreCDEntityPropertyName])
+		{
+			if([doc[JPCouchIncrementalStoreCDEntityPropertyName] isEqualToString:[fetchRequest entityName]])
+			{
+				NSArray *sortDescriptors = [fetchRequest sortDescriptors];
+				if(sortDescriptors)
+				{
+					emit([sortDescriptors valueForKey:@"key"], doc);
+				}
+			}
+		}
+	} reduceBlock:NULL version:@"1.0"];
 	
 	if(view == nil)
 	{
@@ -201,7 +207,7 @@ NSString * const JPCouchIncrementalStoreCDObjectIDPropertyName = @"com.jamiepink
 	[view updateIndex];
 	TDStatus status;
 	NSArray *rows = [view queryWithOptions:&options status:&status];
-	NSArray *mappedObjects = [self cachePropertyValuesInRows:rows forEntity:[fetchRequest entity] inContext:context];
+	NSArray *mappedObjects = [self cachePropertyValuesInRows:rows forFetchRequest:fetchRequest inContext:context];
 	return mappedObjects;
 	return nil;
 }
@@ -293,16 +299,16 @@ static NSDateFormatter * dateFormatter()
 	return formatter;
 }
 
-- (NSArray *)cachePropertyValuesInRows:(NSArray *)rows forEntity:(NSEntityDescription *)entity inContext:(NSManagedObjectContext *)context
+- (NSArray *)cachePropertyValuesInRows:(NSArray *)rows forFetchRequest:(NSFetchRequest *)request inContext:(NSManagedObjectContext *)context
 {
 	NSMutableArray *objects = [NSMutableArray arrayWithCapacity:[rows count]];
 	for(NSDictionary *dictionary in rows)
 	{
 		NSDictionary *doc = dictionary[@"value"];
 		NSString *moIDProperty = doc[@"_id"];
-		NSManagedObjectID *moID = [self newObjectIDForEntity:entity referenceObject:moIDProperty];
+		NSManagedObjectID *moID = [self newObjectIDForEntity:[request entity] referenceObject:moIDProperty];
 		NSManagedObject *object = [context objectWithID:moID];
-		NSDictionary *attributesDictionary = [entity attributesByName];
+		NSDictionary *attributesDictionary = [[request entity] attributesByName];
 		NSMutableDictionary *cachedProperties = [NSMutableDictionary dictionary];
 		for(NSString *attributeKey in [attributesDictionary allKeys])
 		{
@@ -319,7 +325,17 @@ static NSDateFormatter * dateFormatter()
 			
 			[cachedProperties setValue:value forKey:attributeKey];
 		}
-		[[self cachedPropertiesForObjects] setValue:cachedProperties forKey:moIDProperty];
+		if([request predicate])
+		{
+			if([[request predicate] evaluateWithObject:cachedProperties])
+			{
+				[[self cachedPropertiesForObjects] setValue:cachedProperties forKey:moIDProperty];
+			}
+		}
+		else
+		{
+			[[self cachedPropertiesForObjects] setValue:cachedProperties forKey:moIDProperty];
+		}
 		
 		[object setValue:doc[@"_rev"] forKey:@"revisionID"];
 		[objects addObject:object];
