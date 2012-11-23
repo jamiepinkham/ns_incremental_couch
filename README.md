@@ -13,11 +13,11 @@ todo
 3. ~~Delete~~
 4. handle relationships
 5. handle data types other than NSDate, NSString, NSNumber
+6. handle replication
 
-data type
-=========
+data types
 
-```typedef enum {
+`typedef enum {
 NSUndefinedAttributeType = 0,
 NSInteger16AttributeType = 100,
 NSInteger32AttributeType = 200,
@@ -33,5 +33,4 @@ NSTransformableAttributeType = 1800,
 NSObjectIDAttributeType = 2000
 } NSAttributeType;
 `
-6. handle replication
 
