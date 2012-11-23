@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D745AEE165F26A200594926 /* libJPCouchIncrementalStore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DD10873165D41F8005BA0E1 /* libJPCouchIncrementalStore.a */; };
 		7D8EBF9216555B4B009F495E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D8EBF9116555B4B009F495E /* UIKit.framework */; };
 		7D8EBF9416555B4B009F495E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D8EBF9316555B4B009F495E /* Foundation.framework */; };
 		7D8EBF9616555B4B009F495E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D8EBF9516555B4B009F495E /* CoreGraphics.framework */; };
@@ -70,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D745AEE165F26A200594926 /* libJPCouchIncrementalStore.a in Frameworks */,
 				7D8EBF9216555B4B009F495E /* UIKit.framework in Frameworks */,
 				7D8EBF9416555B4B009F495E /* Foundation.framework in Frameworks */,
 				7D8EBF9616555B4B009F495E /* CoreGraphics.framework in Frameworks */,

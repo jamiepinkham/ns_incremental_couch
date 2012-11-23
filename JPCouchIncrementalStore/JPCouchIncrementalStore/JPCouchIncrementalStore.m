@@ -14,17 +14,19 @@
 @interface JPCouchIncrementalStore ()
 
 @property (nonatomic, retain) NSNumber *replicationInterval;
-@property (nonatomic, retain) NSURL *canoncialStoreURL;
+@property (nonatomic, retain) NSURL *canonicalStoreURL;
 @property (nonatomic, retain) NSString *databaseName;
 
 @end
 
+
 NSString * const JPCouchIncrementalStoreCanonicalLocation = @"com.jamiepinkham.JPCouchIncrementalStoreCanonicalLocation";
-NSString * const JPCouchIncrementalStoreReplicationInterval = @"com.jamiepinkham.JPCouchIncrementalStoreCanonicalLocation";
+NSString * const JPCouchIncrementalStoreReplicationInterval = @"com.jamiepinkham.JPCouchIncrementalStoreReplicationInterval";
 NSString * const JPCouchIncrementalStoreDatabaseName = @"com.jamiepinkham.JPCouchIncrementalStoreDatabaseName";
 
 NSString * const JPCouchIncrementalStoreConflictNotification = @"com.jamiepinkham.JPCouchIncrementalStoreConflictNotification";
 NSString * const JPCouchIncrementalStoreConflictManagedObjectIdsUserInfoKey = @"com.jamiepinkham.JPCouchIncrementalStoreConflictManagedObjectIdsUserInfoKey";
+
 
 
 @implementation JPCouchIncrementalStore
@@ -39,6 +41,7 @@ NSString * const JPCouchIncrementalStoreConflictManagedObjectIdsUserInfoKey = @"
 	return NSStringFromClass(self);
 }
 
+
 - (NSString *)generateUUID
 {
 	CFUUIDRef theUUID = CFUUIDCreate(NULL);
@@ -52,7 +55,7 @@ NSString * const JPCouchIncrementalStoreConflictManagedObjectIdsUserInfoKey = @"
 	self = [super initWithPersistentStoreCoordinator:root configurationName:name URL:url options:options];
 	if(self)
 	{
-		[self setCanoncialStoreURL:[options objectForKey:JPCouchIncrementalStoreCanonicalLocation]];
+		[self setCanonicalStoreURL:[options objectForKey:JPCouchIncrementalStoreCanonicalLocation]];
 		[self setReplicationInterval:[options objectForKey:JPCouchIncrementalStoreReplicationInterval]];
 		
 		NSString *databaseName = nil;
@@ -74,7 +77,7 @@ NSString * const JPCouchIncrementalStoreConflictManagedObjectIdsUserInfoKey = @"
 - (BOOL)loadMetadata:(NSError *__autoreleasing *)error
 {
 	NSString *uuid = [self generateUUID];
-	NSDictionary *metdata = @{NSStoreUUIDKey : uuid, NSStoreTypeKey : [[self class] type]};
+	NSDictionary *metdata = @{NSStoreUUIDKey : uuid, NSStoreTypeKey : [[self class] type] };
 	[self setMetadata:metdata];
 	return YES;
 }

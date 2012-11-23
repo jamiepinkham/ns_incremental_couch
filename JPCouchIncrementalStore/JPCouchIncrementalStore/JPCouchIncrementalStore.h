@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "JPCouchIncrementalStoreDelegate.h"
+
+@protocol JPCouchIncrementalStoreDelegate;
+
+
 
 extern NSString * const JPCouchIncrementalStoreCanonicalLocation;
 extern NSString * const JPCouchIncrementalStoreReplicationInterval;
@@ -17,8 +20,18 @@ extern NSString * const JPCouchIncrementalStoreDatabaseName;
 extern NSString * const JPCouchIncrementalStoreConflictNotification;
 extern NSString * const JPCouchIncrementalStoreConflictManagedObjectIdsUserInfoKey;
 
+extern NSString * const JPCouchIncrementalStoreType;
+
 @interface JPCouchIncrementalStore : NSIncrementalStore
 
++ (NSString *)type;
+
 @property (nonatomic, assign) id<JPCouchIncrementalStoreDelegate> delegate;
+
+@end
+
+@protocol JPCouchIncrementalStoreDelegate <NSObject>
+
+//this delegate will probably be used for conflict resolution
 
 @end
