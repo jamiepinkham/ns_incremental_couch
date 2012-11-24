@@ -14,8 +14,6 @@
 
 @interface JPCouchIncrementalStore ()
 
-- (void)generateViewsForManagedObjectsInManagedObjectModel:(NSManagedObjectModel *)managedObjectModel;
-
 @property (nonatomic, retain) NSNumber *replicationInterval;
 @property (nonatomic, retain) NSURL *canonicalStoreURL;
 
@@ -325,20 +323,19 @@ static NSDateFormatter * dateFormatter()
 			
 			[cachedProperties setValue:value forKey:attributeKey];
 		}
+		
+		[[self cachedPropertiesForObjects] setValue:cachedProperties forKey:moIDProperty];
+		
+		BOOL addObject = YES;
 		if([request predicate])
 		{
-			if([[request predicate] evaluateWithObject:cachedProperties])
-			{
-				[[self cachedPropertiesForObjects] setValue:cachedProperties forKey:moIDProperty];
-			}
+			addObject = [[request predicate] evaluateWithObject:cachedProperties];
 		}
-		else
+		if(addObject)
 		{
-			[[self cachedPropertiesForObjects] setValue:cachedProperties forKey:moIDProperty];
+			[object setValue:doc[@"_rev"] forKey:@"revisionID"];
+			[objects addObject:object];
 		}
-		
-		[object setValue:doc[@"_rev"] forKey:@"revisionID"];
-		[objects addObject:object];
 	}
 	return objects;
 }

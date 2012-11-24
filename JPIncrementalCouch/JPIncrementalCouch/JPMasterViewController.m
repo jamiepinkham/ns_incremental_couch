@@ -38,7 +38,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	[self.fetchedResultsController performFetch:nil];
+//	[self.fetchedResultsController performFetch:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -155,7 +155,7 @@
     
     [fetchRequest setSortDescriptors:sortDescriptors];
 	
-//	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"timeStamp < %@", [NSDate date]];
+//	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"timeStamp > %@", [NSDate date]];
 //	[fetchRequest setPredicate:predicate];
     
     // Edit the section name key path and cache name if appropriate.
