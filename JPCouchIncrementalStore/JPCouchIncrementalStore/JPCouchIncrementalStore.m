@@ -95,6 +95,7 @@ NSString * const JPCouchIncrementalStoreCDObjectIDPropertyName = @"com.jamiepink
 {
 	if([self couchDB])
 	{
+		[[self couchDB] compact];
 		[[self couchDB] close];
 	}
 }
