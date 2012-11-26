@@ -10,9 +10,20 @@
 #import <CoreData/CoreData.h>
 #import <JPCouchIncrementalStore/JPCouchManagedObject.h>
 
+@class Subevent;
+
 @interface Event : JPCouchManagedObject
 
-@property (nonatomic) NSTimeInterval timeStamp;
-@property (nonatomic) BOOL active;
+@property (nonatomic, retain) NSNumber * active;
+@property (nonatomic, retain) NSDate * timeStamp;
+@property (nonatomic, retain) NSSet *events;
+@end
+
+@interface Event (CoreDataGeneratedAccessors)
+
+- (void)addEventsObject:(Subevent *)value;
+- (void)removeEventsObject:(Subevent *)value;
+- (void)addEvents:(NSSet *)values;
+- (void)removeEvents:(NSSet *)values;
 
 @end

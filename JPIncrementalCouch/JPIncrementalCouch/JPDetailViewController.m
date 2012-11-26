@@ -32,6 +32,8 @@
 
 	if (self.detailItem) {
 	    self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"timeStamp"] description];
+		NSArray *subevents = [[self.detailItem valueForKey:@"events"] allObjects];
+		self.subeventDescriptionLabel.text = [[subevents objectAtIndex:0] valueForKey:@"title"];
 	}
 }
 

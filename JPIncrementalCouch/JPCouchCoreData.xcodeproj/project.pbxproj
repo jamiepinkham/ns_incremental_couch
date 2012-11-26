@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7D3440AF1663AEC700C7C634 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3440AE1663AEC700C7C634 /* Event.m */; };
+		7D3440C71663BC4D00C7C634 /* Subevent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3440C61663BC4D00C7C634 /* Subevent.m */; };
+		7D3440CD1663C1C200C7C634 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3440CC1663C1C200C7C634 /* Event.m */; };
 		7D5C8EDB165FCADC0014960C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5C8EDA165FCADC0014960C /* libsqlite3.dylib */; };
 		7D5C8EDF165FCD920014960C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5C8EDE165FCD920014960C /* CFNetwork.framework */; };
 		7D5C8EE3165FCDBD0014960C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5C8EE2165FCDBD0014960C /* SystemConfiguration.framework */; };
@@ -49,8 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7D3440AD1663AEC700C7C634 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
-		7D3440AE1663AEC700C7C634 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		7D3440C51663BC4D00C7C634 /* Subevent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Subevent.h; sourceTree = "<group>"; };
+		7D3440C61663BC4D00C7C634 /* Subevent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Subevent.m; sourceTree = "<group>"; };
+		7D3440CB1663C1C200C7C634 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		7D3440CC1663C1C200C7C634 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		7D5C8EDA165FCADC0014960C /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		7D5C8EDE165FCD920014960C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		7D5C8EE0165FCDA50014960C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -145,9 +148,11 @@
 				7D8EBFB216555B4C009F495E /* JPDetailViewController.m */,
 				7D8EBFB416555B4C009F495E /* JPMasterViewController.xib */,
 				7D8EBFB716555B4C009F495E /* JPDetailViewController.xib */,
-				7D3440AD1663AEC700C7C634 /* Event.h */,
-				7D3440AE1663AEC700C7C634 /* Event.m */,
+				7D3440CB1663C1C200C7C634 /* Event.h */,
+				7D3440CC1663C1C200C7C634 /* Event.m */,
 				7D8EBFAB16555B4C009F495E /* JPIncrementalCouch.xcdatamodeld */,
+				7D3440C51663BC4D00C7C634 /* Subevent.h */,
+				7D3440C61663BC4D00C7C634 /* Subevent.m */,
 				7D8EBF9A16555B4B009F495E /* Supporting Files */,
 			);
 			path = JPIncrementalCouch;
@@ -264,7 +269,8 @@
 				7D8EBFAD16555B4C009F495E /* JPIncrementalCouch.xcdatamodeld in Sources */,
 				7D8EBFB016555B4C009F495E /* JPMasterViewController.m in Sources */,
 				7D8EBFB316555B4C009F495E /* JPDetailViewController.m in Sources */,
-				7D3440AF1663AEC700C7C634 /* Event.m in Sources */,
+				7D3440C71663BC4D00C7C634 /* Subevent.m in Sources */,
+				7D3440CD1663C1C200C7C634 /* Event.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

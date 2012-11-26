@@ -38,6 +38,7 @@ NSString * const JPCouchIncrementalStoreErrorDomain = @"com.jamiepinkham.JPCouch
 
 NSString * const JPCouchIncrementalStoreCDEntityPropertyName = @"com.jamiepinkham.cd_entity";
 NSString * const JPCouchIncrementalStoreCDObjectIDPropertyName = @"com.jamiepinkham.mo_id";
+NSString * const JPCouchIncrementalStoreCDRelationshipFormatPropertyName = @"com.jamiepinkham.relationship_%@_mo_ids";
 
 
 @implementation JPCouchIncrementalStore
@@ -146,14 +147,32 @@ NSString * const JPCouchIncrementalStoreCDObjectIDPropertyName = @"com.jamiepink
 
 - (NSIncrementalStoreNode *)newValuesForObjectWithID:(NSManagedObjectID *)objectID withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)error
 {
-	NSDictionary *dictionary = [[self cachedPropertiesForObjects] objectForKey:[self referenceObjectForObjectID:objectID]];
+	NSString *docID = [self referenceObjectForObjectID:objectID];
+	NSDictionary *dictionary = [[self cachedPropertiesForObjects] objectForKey:docID];
+	if(dictionary == nil)
+	{
+		
+		TD_Revision *rev = [[self couchDB] getDocumentWithID:docID revisionID:nil];
+		TD_Body *body = [rev body];
+		NSDictionary *documentProperties = [body properties];
+		[self cachePropertyValuesInDocuments:@[documentProperties] forEntity:[objectID entity] inContext:context];
+		dictionary = [[self cachedPropertiesForObjects] objectForKey:docID];
+		
+	}
 	NSIncrementalStoreNode *node = [[NSIncrementalStoreNode alloc] initWithObjectID:objectID withValues:dictionary version:1];
 	return node;
 }
 
 - (id)newValueForRelationship:(NSRelationshipDescription *)relationship forObjectWithID:(NSManagedObjectID *)objectID withContext:(NSManagedObjectContext *)context error:(NSError *__autoreleasing *)error
 {
-	return nil;
+	NSDictionary *dictionary = [[self cachedPropertiesForObjects] objectForKey:[self referenceObjectForObjectID:objectID]];
+	NSString *relationshipName = [relationship name];
+	if(dictionary[relationshipName])
+	{
+		return dictionary[relationshipName];
+	}
+	
+	return [NSNull null];
 }
 
 - (NSArray *)obtainPermanentIDsForObjects:(NSArray *)array error:(NSError *__autoreleasing *)error
@@ -216,8 +235,16 @@ NSString * const JPCouchIncrementalStoreCDObjectIDPropertyName = @"com.jamiepink
 	[view updateIndex];
 	TDStatus status;
 	NSArray *rows = [view queryWithOptions:&options status:&status];
-	NSArray *mappedObjects = [self cachePropertyValuesInRows:rows forFetchRequest:fetchRequest inContext:context];
-	return mappedObjects;
+	NSArray *docs = [rows valueForKeyPath:@"value"];
+	NSArray *mappedObjects = [self cachePropertyValuesInDocuments:docs forEntity:[fetchRequest entity] inContext:context];
+//	if([fetchRequest predicate])
+//	{
+//		return [mappedObjects filteredArrayUsingPredicate:[fetchRequest predicate]];
+//	}
+//	else
+//	{
+		return mappedObjects;
+//	}
 	return nil;
 }
 
@@ -305,6 +332,39 @@ NSString * const JPCouchIncrementalStoreCDObjectIDPropertyName = @"com.jamiepink
 	[attributeValues setObject:[[mo entity] name] forKey:JPCouchIncrementalStoreCDEntityPropertyName];
 	NSString *moIdString = [self referenceObjectForObjectID:[mo objectID]];
 	[attributeValues setObject:moIdString forKey:@"_id"];
+	
+	NSDictionary *relationshipDictionary = [[mo entity] relationshipsByName];
+	for(id key in [relationshipDictionary allKeys])
+	{
+		id relationshipValue = nil;
+		
+		NSRelationshipDescription *relationshipDescription = relationshipDictionary[key];
+		
+		NSString *relationshipKeyName = [NSString stringWithFormat:JPCouchIncrementalStoreCDRelationshipFormatPropertyName, [relationshipDescription name]];
+		
+		NSString *keyPath = [NSString stringWithFormat:@"%@.objectID", [relationshipDescription name]];
+		
+		
+		if([relationshipDescription isToMany])
+		{
+			NSArray *relatedObjectIDs = [mo valueForKeyPath:keyPath];
+			
+			NSMutableArray *array = [NSMutableArray array];
+			for(NSManagedObjectID *moID in relatedObjectIDs)
+			{
+				[array addObject:[self referenceObjectForObjectID:moID]];
+			}
+			relationshipValue = array;
+		}
+		else
+		{
+			NSManagedObjectID *relatedObjectID = [mo valueForKeyPath:keyPath];
+			relationshipValue = [self referenceObjectForObjectID:relatedObjectID];
+			
+		}
+		
+		[attributeValues setValue:relationshipValue forKey:relationshipKeyName];
+	}
 	return attributeValues;
 }
 
@@ -320,16 +380,15 @@ static NSDateFormatter * dateFormatter()
 	return formatter;
 }
 
-- (NSArray *)cachePropertyValuesInRows:(NSArray *)rows forFetchRequest:(NSFetchRequest *)request inContext:(NSManagedObjectContext *)context
+- (NSArray *)cachePropertyValuesInDocuments:(NSArray *)docs forEntity:(NSEntityDescription *)entity inContext:(NSManagedObjectContext *)context
 {
-	NSMutableArray *objects = [NSMutableArray arrayWithCapacity:[rows count]];
-	for(NSDictionary *dictionary in rows)
+	NSMutableArray *objects = [NSMutableArray arrayWithCapacity:[docs count]];
+	for(NSDictionary *doc in docs)
 	{
-		NSDictionary *doc = dictionary[@"value"];
 		NSString *moIDProperty = doc[@"_id"];
-		NSManagedObjectID *moID = [self newObjectIDForEntity:[request entity] referenceObject:moIDProperty];
+		NSManagedObjectID *moID = [self newObjectIDForEntity:entity referenceObject:moIDProperty];
 		NSManagedObject *object = [context objectWithID:moID];
-		NSDictionary *attributesDictionary = [[request entity] attributesByName];
+		NSDictionary *attributesDictionary = [entity attributesByName];
 		NSMutableDictionary *cachedProperties = [NSMutableDictionary dictionary];
 		for(NSString *attributeKey in [attributesDictionary allKeys])
 		{
@@ -344,7 +403,7 @@ static NSDateFormatter * dateFormatter()
 				value = doc[attributeKey];
 			}
 			
-			if(value == nil)
+			if(value == nil  || [value isEqual:[NSNull null]])
 			{
 				if([attributeDescription defaultValue])
 				{
@@ -359,21 +418,42 @@ static NSDateFormatter * dateFormatter()
 			[cachedProperties setValue:value forKey:attributeKey];
 		}
 		
+		NSDictionary *relationshipDictionary = [entity relationshipsByName];
+		for(NSString *relationshipName in [relationshipDictionary allKeys])
+		{
+			NSRelationshipDescription *relationshipDescription = relationshipDictionary[relationshipName];
+			NSEntityDescription *destinationEntity = [relationshipDescription destinationEntity];
+			
+			NSString *relationshipFormattedName = [NSString stringWithFormat:JPCouchIncrementalStoreCDRelationshipFormatPropertyName, relationshipName];
+			
+			id relationshipValue = nil;
+			
+			if([relationshipDescription isToMany])
+			{
+				NSArray *docIDs = doc[relationshipFormattedName];
+				relationshipValue = [NSMutableSet set];
+				for(NSString *moID in docIDs)
+				{
+					NSManagedObjectID *objectID = [self newObjectIDForEntity:destinationEntity referenceObject:moID];
+					[relationshipValue addObject:objectID];
+				}
+				
+			}
+			else
+			{
+				NSString *docID = doc[relationshipFormattedName];
+				relationshipValue = [self newObjectIDForEntity:destinationEntity referenceObject:docID];
+			}
+
+			[cachedProperties setValue:relationshipValue forKey:relationshipName];
+		}
+		[cachedProperties setValue:doc[@"_rev"] forKey:@"revisionID"];
 		[[self cachedPropertiesForObjects] setValue:cachedProperties forKey:moIDProperty];
-		
-		BOOL addObject = YES;
-		if([request predicate])
-		{
-			addObject = [[request predicate] evaluateWithObject:cachedProperties];
-		}
-		if(addObject)
-		{
-			[object setValue:doc[@"_rev"] forKey:@"revisionID"];
-			[objects addObject:object];
-		}
+		[objects addObject:object];
 	}
 	return objects;
 }
+
 
 - (id)defaultValueForAttributeType:(NSAttributeType)attributeType
 {

@@ -5,9 +5,15 @@
         <attribute name="timeStamp" optional="YES" attributeType="Date">
             <userInfo/>
         </attribute>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Subevent" inverseName="event" inverseEntity="Subevent" syncable="YES"/>
         <userInfo/>
     </entity>
+    <entity name="Subevent" representedClassName="Subevent" syncable="YES">
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="events" inverseEntity="Event" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Event" positionX="261" positionY="189" width="128" height="75"/>
+        <element name="Event" positionX="261" positionY="189" width="128" height="90"/>
+        <element name="Subevent" positionX="160" positionY="192" width="128" height="75"/>
     </elements>
 </model>
