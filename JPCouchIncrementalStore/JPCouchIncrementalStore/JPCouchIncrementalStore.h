@@ -29,9 +29,3 @@ extern NSString * const JPCouchIncrementalStoreType;
 @property (nonatomic, assign) id<JPCouchIncrementalStoreDelegate> delegate;
 
 @end
-
-@protocol JPCouchIncrementalStoreDelegate <NSObject>
-
-//this delegate will probably be used for conflict resolution
-
-@end

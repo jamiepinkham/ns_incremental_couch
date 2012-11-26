@@ -8,6 +8,7 @@
 
 #import "JPCouchIncrementalStore.h"
 #import "JPCouchManagedObject.h"
+#import "JPCouchConflictResolver.h"
 #import <TouchDB/TouchDB.h>
 #import <TouchDB/TD_Database+Insertion.h>
 #import <TouchDB/TD_Body.h>
@@ -21,7 +22,7 @@
 
 @property (nonatomic, retain) NSMutableDictionary *cachedPropertiesForObjects;
 
-
+@property (nonatomic, retain) JPCouchConflictResolver *defaultConflictResolver;
 @end
 
 
@@ -84,7 +85,8 @@ NSString * const JPCouchIncrementalStoreCDObjectIDPropertyName = @"com.jamiepink
 		TD_Database *db = [[TD_Database alloc] initWithPath:[url path]];
 		[self setCouchDB:db];
 		
-//		[self generateViewsForManagedObjectsInManagedObjectModel:[root managedObjectModel]];
+		JPCouchConflictResolver *resolver = [JPCouchConflictResolver new];
+		[self setDefaultConflictResolver:resolver];
 	}
 	return self;
 }
@@ -220,6 +222,12 @@ NSString * const JPCouchIncrementalStoreCDObjectIDPropertyName = @"com.jamiepink
 		TD_Revision *rev = [[TD_Revision alloc] initWithProperties:attributeValues];
 		TDStatus status;
 		TD_Revision* result = [[self couchDB] putRevision: rev prevRevisionID: nil allowConflict: NO status: &status];
+		
+		if(status == kTDStatusConflict)
+		{
+//			[self handleConflictForManagedObject:insertedObject proposedValues:attributeValues];
+		}
+		
 		if(status != kTDStatusCreated){
 			NSLog(@"not created = %@", result);
 		}
@@ -239,6 +247,10 @@ NSString * const JPCouchIncrementalStoreCDObjectIDPropertyName = @"com.jamiepink
 			[rev setBody:[TD_Body bodyWithProperties:attributeValues]];
 			TDStatus status;
 			TD_Revision* result = [[self couchDB] putRevision: rev prevRevisionID:previousRevision allowConflict: NO status: &status];
+			if(status == kTDStatusConflict)
+			{
+//				[self handleConflictForManagedObject:couchUpdatedObject proposedValues:attributeValues];
+			}
 			[updatedObject setValue:result.revID forKey:@"revisionID"];
 		}
 
@@ -339,6 +351,10 @@ static NSDateFormatter * dateFormatter()
 	}
 	return objects;
 }
+
+#pragma mark - conflicts
+
+
 
 
 @end

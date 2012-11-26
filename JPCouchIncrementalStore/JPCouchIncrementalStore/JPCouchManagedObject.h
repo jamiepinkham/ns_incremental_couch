@@ -8,9 +8,10 @@
 
 #import <CoreData/CoreData.h>
 
+extern NSString * const JPCouchManagedObjectConflictResolverClass;
+
 @interface JPCouchManagedObject : NSManagedObject
 
-//@property (nonatomic, copy) NSString *documentID;
 @property (nonatomic, copy) NSString *revisionID;
 
 @end

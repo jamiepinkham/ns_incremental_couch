@@ -8,9 +8,10 @@
 
 #import "JPCouchManagedObject.h"
 
+NSString * const JPCouchManagedObjectConflictResolverClass = @"com.jamiepinkham.JPCouchManagedObjectConflictResolverClass";
+
 @implementation JPCouchManagedObject
 
 @synthesize revisionID;
-//@synthesize documentID;
 
 @end
