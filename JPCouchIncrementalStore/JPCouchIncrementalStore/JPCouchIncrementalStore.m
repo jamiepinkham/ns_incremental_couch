@@ -188,7 +188,14 @@ NSString * const JPCouchIncrementalStoreCDRelationshipFormatPropertyName = @"com
 }
 
 
-#pragma mark - view generation
+- (void)managedObjectContextDidUnregisterObjectsWithIDs:(NSArray *)objectIDs
+{
+	for(NSManagedObjectID *moID in objectIDs)
+	{
+		NSString *docID = [self referenceObjectForObjectID:moID];
+		[[self cachedPropertiesForObjects] removeObjectForKey:docID];
+	}
+}
 
 
 #pragma mark - request executions
