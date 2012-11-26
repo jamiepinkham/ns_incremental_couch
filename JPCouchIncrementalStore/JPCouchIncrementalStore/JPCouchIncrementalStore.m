@@ -330,10 +330,6 @@ static NSDateFormatter * dateFormatter()
 			{
 				value = [dateFormatter() dateFromString:doc[attributeKey]];
 			}
-//			else if([attributeDescription attributeType] == NSBooleanAttributeType)
-//			{
-//				value = ([doc[attributeKey] isEqualToString:@"yes"] ? @YES :@NO);
-//			}
 			else
 			{
 				value = doc[attributeKey];
