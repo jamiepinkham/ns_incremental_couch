@@ -244,15 +244,14 @@ NSString * const JPCouchIncrementalStoreCDRelationshipFormatPropertyName = @"com
 	NSArray *rows = [view queryWithOptions:&options status:&status];
 	NSArray *docs = [rows valueForKeyPath:@"value"];
 	NSArray *mappedObjects = [self cachePropertyValuesInDocuments:docs forEntity:[fetchRequest entity] inContext:context];
-//	if([fetchRequest predicate])
-//	{
-//		return [mappedObjects filteredArrayUsingPredicate:[fetchRequest predicate]];
-//	}
-//	else
-//	{
+	if([fetchRequest predicate])
+	{
+		return [mappedObjects filteredArrayUsingPredicate:[fetchRequest predicate]];
+	}
+	else
+	{
 		return mappedObjects;
-//	}
-	return nil;
+	}
 }
 
 
