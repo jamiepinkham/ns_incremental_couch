@@ -11,7 +11,7 @@ todo
 1. ~~Read~~
 2. ~~Update~~
 3. ~~Delete~~
-4. handle relationships
+4. handle relationships ? maybe done.. not 100%
 5. ~~handle data types other than NSDate, NSString, NSNumber~~
 6. handle replication
 
