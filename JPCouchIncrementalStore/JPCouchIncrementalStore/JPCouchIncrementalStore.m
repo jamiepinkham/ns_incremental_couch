@@ -290,6 +290,8 @@ NSString * const JPCouchIncrementalStoreCDObjectIDPropertyName = @"com.jamiepink
 			NSString *formattedDate = [dateFormatter() stringFromDate:value];
 			attributeValues[key] = formattedDate;
 		}
+		
+		
 	}
 	[attributeValues setObject:[[mo entity] name] forKey:JPCouchIncrementalStoreCDEntityPropertyName];
 	NSString *moIdString = [self referenceObjectForObjectID:[mo objectID]];
@@ -328,9 +330,25 @@ static NSDateFormatter * dateFormatter()
 			{
 				value = [dateFormatter() dateFromString:doc[attributeKey]];
 			}
+//			else if([attributeDescription attributeType] == NSBooleanAttributeType)
+//			{
+//				value = ([doc[attributeKey] isEqualToString:@"yes"] ? @YES :@NO);
+//			}
 			else
 			{
 				value = doc[attributeKey];
+			}
+			
+			if(value == nil)
+			{
+				if([attributeDescription defaultValue])
+				{
+					value = [attributeDescription defaultValue];
+				}
+				else
+				{
+					value = [self defaultValueForAttributeType:[attributeDescription attributeType]];
+				}
 			}
 			
 			[cachedProperties setValue:value forKey:attributeKey];
@@ -350,6 +368,30 @@ static NSDateFormatter * dateFormatter()
 		}
 	}
 	return objects;
+}
+
+- (id)defaultValueForAttributeType:(NSAttributeType)attributeType
+{
+	switch (attributeType) {
+		
+		case NSDateAttributeType:
+			return [NSDate date];
+		case NSInteger16AttributeType:
+		case NSInteger32AttributeType:
+		case NSInteger64AttributeType:
+		case NSBooleanAttributeType:
+		case NSDecimalAttributeType:
+		case NSFloatAttributeType:
+		case NSDoubleAttributeType:
+			return @0;
+		case NSUndefinedAttributeType:
+		case NSObjectIDAttributeType:
+		case NSTransformableAttributeType:
+		case NSStringAttributeType:
+		case NSBinaryDataAttributeType:
+		default:
+			return [NSNull null];
+	}
 }
 
 #pragma mark - conflicts
