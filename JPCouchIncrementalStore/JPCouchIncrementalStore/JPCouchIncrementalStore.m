@@ -20,7 +20,7 @@
 
 @property (nonatomic, retain) TD_Database *couchDB;
 
-@property (nonatomic, retain) NSMutableDictionary *cachedPropertiesForObjects;
+@property (nonatomic, retain) NSCache *cachedPropertiesForObjects;
 
 @property (nonatomic, retain) JPCouchConflictResolver *defaultConflictResolver;
 @end
@@ -70,7 +70,7 @@ NSString * const JPCouchIncrementalStoreCDRelationshipFormatPropertyName = @"com
 		[self setCanonicalStoreURL:[options objectForKey:JPCouchIncrementalStoreCanonicalLocation]];
 		[self setReplicationInterval:[options objectForKey:JPCouchIncrementalStoreReplicationInterval]];
 		
-		[self setCachedPropertiesForObjects:[NSMutableDictionary dictionary]];
+		[self setCachedPropertiesForObjects:[NSCache new]];
 		
 		NSString *databaseName = nil;
 		
@@ -211,7 +211,7 @@ NSString * const JPCouchIncrementalStoreCDRelationshipFormatPropertyName = @"com
 	
 	if([fetchRequest fetchOffset] > 0)
 	{
-		
+		options.skip = [fetchRequest fetchOffset];
 	}
 	
 	TD_View *view = [[self couchDB] viewNamed:[fetchRequest entityName]];
