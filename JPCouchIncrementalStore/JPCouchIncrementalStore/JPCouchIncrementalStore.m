@@ -91,6 +91,14 @@ NSString * const JPCouchIncrementalStoreCDObjectIDPropertyName = @"com.jamiepink
 	return self;
 }
 
+- (void)dealloc
+{
+	if([self couchDB])
+	{
+		[[self couchDB] close];
+	}
+}
+
 - (void)setCouchDB:(TD_Database *)couchDB
 {
 	if(_couchDB != couchDB)
