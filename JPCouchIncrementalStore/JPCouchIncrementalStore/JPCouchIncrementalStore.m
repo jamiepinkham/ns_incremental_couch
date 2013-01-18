@@ -45,7 +45,10 @@ NSString * const JPCouchIncrementalStoreCDRelationshipFormatPropertyName = @"com
 
 + (void)initialize
 {
-	[NSPersistentStoreCoordinator registerStoreClass:self forStoreType:[self type]];
+	if (self == [JPCouchIncrementalStore class])
+	{
+		[NSPersistentStoreCoordinator registerStoreClass:self forStoreType:[self type]];
+	}
 }
 
 + (NSString *)type
