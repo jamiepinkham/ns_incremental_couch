@@ -23,8 +23,8 @@
 @property (nonatomic, retain) NSCache *cachedPropertiesForObjects;
 
 @property (nonatomic, retain) JPCouchConflictResolver *defaultConflictResolver;
-@end
 
+@end
 
 NSString * const JPCouchIncrementalStoreCanonicalLocation = @"com.jamiepinkham.JPCouchIncrementalStoreCanonicalLocation";
 NSString * const JPCouchIncrementalStoreReplicationInterval = @"com.jamiepinkham.JPCouchIncrementalStoreReplicationInterval";
@@ -32,7 +32,6 @@ NSString * const JPCouchIncrementalStoreDatabaseName = @"com.jamiepinkham.JPCouc
 
 NSString * const JPCouchIncrementalStoreConflictNotification = @"com.jamiepinkham.JPCouchIncrementalStoreConflictNotification";
 NSString * const JPCouchIncrementalStoreConflictManagedObjectIdsUserInfoKey = @"com.jamiepinkham.JPCouchIncrementalStoreConflictManagedObjectIdsUserInfoKey";
-
 
 NSString * const JPCouchIncrementalStoreErrorDomain = @"com.jamiepinkham.JPCouchIncrementalStore";
 
@@ -56,13 +55,12 @@ NSString * const JPCouchIncrementalStoreCDRelationshipFormatPropertyName = @"com
 	return NSStringFromClass(self);
 }
 
-
 - (NSString *)generateUUID
 {
 	CFUUIDRef theUUID = CFUUIDCreate(NULL);
 	CFStringRef string = CFUUIDCreateString(NULL, theUUID);
 	CFRelease(theUUID);
-	return (__bridge_transfer NSString *)string;
+	return CFBridgingRelease(string);
 }
 
 - (instancetype)initWithPersistentStoreCoordinator:(NSPersistentStoreCoordinator *)root configurationName:(NSString *)name URL:(NSURL *)url options:(NSDictionary *)options
@@ -138,7 +136,8 @@ NSString * const JPCouchIncrementalStoreCDRelationshipFormatPropertyName = @"com
 	else
 	{
 		NSDictionary *userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Unsupported NSFetchRequestResultType, %d", nil), request.requestType]};
-        if (error) {
+        if (error) 
+		{
             *error = [[NSError alloc] initWithDomain:JPCouchIncrementalStoreErrorDomain code:0 userInfo:userInfo];
         }
         
@@ -154,7 +153,6 @@ NSString * const JPCouchIncrementalStoreCDRelationshipFormatPropertyName = @"com
 	NSDictionary *dictionary = [[self cachedPropertiesForObjects] objectForKey:docID];
 	if(dictionary == nil)
 	{
-		
 		TD_Revision *rev = [[self couchDB] getDocumentWithID:docID revisionID:nil];
 		TD_Body *body = [rev body];
 		NSDictionary *documentProperties = [body properties];
@@ -219,6 +217,16 @@ NSString * const JPCouchIncrementalStoreCDRelationshipFormatPropertyName = @"com
 	
 	TD_View *view = [[self couchDB] viewNamed:[fetchRequest entityName]];
 	
+	if(view == nil)
+	{
+		if(error != nil)
+		{
+			NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"No avaliable view for entity named: %@", nil), [fetchRequest entityName]] };
+			*error = [[NSError alloc] initWithDomain:JPCouchIncrementalStoreErrorDomain code:0 userInfo:userInfo];
+		}
+		return nil;
+	}
+	
 	[view setMapBlock:^(NSDictionary *doc, TDMapEmitBlock emit) {
 		if(doc && doc[JPCouchIncrementalStoreCDEntityPropertyName])
 		{
@@ -233,15 +241,6 @@ NSString * const JPCouchIncrementalStoreCDRelationshipFormatPropertyName = @"com
 		}
 	} reduceBlock:NULL version:@"1.0"];
 	
-	if(view == nil)
-	{
-		if(error != nil)
-		{
-			NSDictionary *userInfo = @{ NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"No avaliable view for entity named: %@", nil), [fetchRequest entityName]] };
-			*error = [[NSError alloc] initWithDomain:JPCouchIncrementalStoreErrorDomain code:0 userInfo:userInfo];
-		}
-		return nil;
-	}
 	[view updateIndex];
 	TDStatus status;
 	NSArray *rows = [view queryWithOptions:&options status:&status];
@@ -273,7 +272,8 @@ NSString * const JPCouchIncrementalStoreCDRelationshipFormatPropertyName = @"com
 //			[self handleConflictForManagedObject:insertedObject proposedValues:attributeValues];
 		}
 		
-		if(status != kTDStatusCreated){
+		if(status != kTDStatusCreated)
+		{
 			NSLog(@"not created = %@", result);
 		}
 		
@@ -318,7 +318,6 @@ NSString * const JPCouchIncrementalStoreCDRelationshipFormatPropertyName = @"com
 	}
 	
 	return [NSArray array];
-	return nil;
 }
 
 #pragma mark - mapping
@@ -335,8 +334,6 @@ NSString * const JPCouchIncrementalStoreCDRelationshipFormatPropertyName = @"com
 			NSString *formattedDate = [dateFormatter() stringFromDate:value];
 			attributeValues[key] = formattedDate;
 		}
-		
-		
 	}
 	[attributeValues setObject:[[mo entity] name] forKey:JPCouchIncrementalStoreCDEntityPropertyName];
 	NSString *moIdString = [self referenceObjectForObjectID:[mo objectID]];
@@ -353,7 +350,6 @@ NSString * const JPCouchIncrementalStoreCDRelationshipFormatPropertyName = @"com
 		
 		NSString *keyPath = [NSString stringWithFormat:@"%@.objectID", [relationshipDescription name]];
 		
-		
 		if([relationshipDescription isToMany])
 		{
 			NSArray *relatedObjectIDs = [mo valueForKeyPath:keyPath];
@@ -369,7 +365,6 @@ NSString * const JPCouchIncrementalStoreCDRelationshipFormatPropertyName = @"com
 		{
 			NSManagedObjectID *relatedObjectID = [mo valueForKeyPath:keyPath];
 			relationshipValue = [self referenceObjectForObjectID:relatedObjectID];
-			
 		}
 		
 		[attributeValues setValue:relationshipValue forKey:relationshipKeyName];
@@ -377,8 +372,8 @@ NSString * const JPCouchIncrementalStoreCDRelationshipFormatPropertyName = @"com
 	return attributeValues;
 }
 
+// This isn't thread safe
 static NSDateFormatter *formatter = nil;
-
 static NSDateFormatter * dateFormatter()
 {
 	if(formatter == nil)
@@ -412,7 +407,7 @@ static NSDateFormatter * dateFormatter()
 				value = doc[attributeKey];
 			}
 			
-			if(value == nil  || [value isEqual:[NSNull null]])
+			if(value == nil || [value isEqual:[NSNull null]])
 			{
 				if([attributeDescription defaultValue])
 				{
@@ -446,7 +441,6 @@ static NSDateFormatter * dateFormatter()
 					NSManagedObjectID *objectID = [self newObjectIDForEntity:destinationEntity referenceObject:moID];
 					[relationshipValue addObject:objectID];
 				}
-				
 			}
 			else
 			{
@@ -467,7 +461,6 @@ static NSDateFormatter * dateFormatter()
 - (id)defaultValueForAttributeType:(NSAttributeType)attributeType
 {
 	switch (attributeType) {
-		
 		case NSDateAttributeType:
 			return [NSDate date];
 		case NSInteger16AttributeType:

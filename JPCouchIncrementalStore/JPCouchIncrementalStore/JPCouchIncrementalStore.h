@@ -11,8 +11,6 @@
 
 @protocol JPCouchIncrementalStoreDelegate;
 
-
-
 extern NSString * const JPCouchIncrementalStoreCanonicalLocation;
 extern NSString * const JPCouchIncrementalStoreReplicationInterval;
 extern NSString * const JPCouchIncrementalStoreDatabaseName;
