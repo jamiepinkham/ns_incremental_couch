@@ -451,7 +451,7 @@ static NSDateFormatter * dateFormatter()
 			[cachedProperties setValue:relationshipValue forKey:relationshipName];
 		}
 		[cachedProperties setValue:doc[@"_rev"] forKey:@"revisionID"];
-		[[self cachedPropertiesForObjects] setValue:cachedProperties forKey:moIDProperty];
+		[[self cachedPropertiesForObjects] setObject:cachedProperties forKey:moIDProperty];
 		[objects addObject:object];
 	}
 	return objects;
