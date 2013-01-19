@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@protocol JPCouchIncrementalStoreDelegate;
+#import "JPCouchIncrementalStoreDelegate.h"
 
 extern NSString * const JPCouchIncrementalStoreCanonicalLocation;
 extern NSString * const JPCouchIncrementalStoreReplicationInterval;
@@ -24,6 +24,6 @@ extern NSString * const JPCouchIncrementalStoreType;
 
 + (NSString *)type;
 
-@property (nonatomic, assign) id<JPCouchIncrementalStoreDelegate> delegate;
+@property (nonatomic, weak) id<JPCouchIncrementalStoreDelegate> delegate;
 
 @end

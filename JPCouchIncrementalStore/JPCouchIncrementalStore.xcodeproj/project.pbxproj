@@ -145,8 +145,8 @@
 		7D8EC04B16556161009F495E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7D8EC04D16556720009F495E /* JPCouchIncrementalStoreDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPCouchIncrementalStoreDelegate.h; sourceTree = "<group>"; };
 		7DD10826165D4132005BA0E1 /* TouchDB.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TouchDB.xcodeproj; path = "../Externals/TouchDB-iOS/TouchDB.xcodeproj"; sourceTree = "<group>"; };
-		7DD265711661206C00BF9E23 /* JPCouchConflictResolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JPCouchConflictResolver.h; path = JPCouchIncrementalStore/JPCouchConflictResolver.h; sourceTree = "<group>"; };
-		7DD265721661206C00BF9E23 /* JPCouchConflictResolver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JPCouchConflictResolver.m; path = JPCouchIncrementalStore/JPCouchConflictResolver.m; sourceTree = "<group>"; };
+		7DD265711661206C00BF9E23 /* JPCouchConflictResolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPCouchConflictResolver.h; sourceTree = "<group>"; };
+		7DD265721661206C00BF9E23 /* JPCouchConflictResolver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPCouchConflictResolver.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,11 +166,9 @@
 		7D8EBFBF16555BF8009F495E = {
 			isa = PBXGroup;
 			children = (
-				7DD265711661206C00BF9E23 /* JPCouchConflictResolver.h */,
-				7DD265721661206C00BF9E23 /* JPCouchConflictResolver.m */,
 				7DD10826165D4132005BA0E1 /* TouchDB.xcodeproj */,
-				7DD107EB165D1BE1005BA0E1 /* Categories */,
 				7D8EBFCF16555BF8009F495E /* JPCouchIncrementalStore */,
+				7D8EBFD016555BF8009F495E /* Supporting Files */,
 				7D8EBFCC16555BF8009F495E /* Frameworks */,
 				7D8EBFCB16555BF8009F495E /* Products */,
 			);
@@ -196,12 +194,13 @@
 		7D8EBFCF16555BF8009F495E /* JPCouchIncrementalStore */ = {
 			isa = PBXGroup;
 			children = (
+				7D8EC04D16556720009F495E /* JPCouchIncrementalStoreDelegate.h */,
 				7D8EBFD216555BF8009F495E /* JPCouchIncrementalStore.h */,
 				7D8EBFD416555BF8009F495E /* JPCouchIncrementalStore.m */,
-				7D8EBFD016555BF8009F495E /* Supporting Files */,
-				7D8EC04D16556720009F495E /* JPCouchIncrementalStoreDelegate.h */,
 				7D5C8F0F16600CFF0014960C /* JPCouchManagedObject.h */,
 				7D5C8F1016600CFF0014960C /* JPCouchManagedObject.m */,
+				7DD265711661206C00BF9E23 /* JPCouchConflictResolver.h */,
+				7DD265721661206C00BF9E23 /* JPCouchConflictResolver.m */,
 			);
 			path = JPCouchIncrementalStore;
 			sourceTree = "<group>";
@@ -212,13 +211,7 @@
 				7D8EBFD116555BF8009F495E /* JPCouchIncrementalStore-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		7DD107EB165D1BE1005BA0E1 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Categories;
+			path = JPCouchIncrementalStore;
 			sourceTree = "<group>";
 		};
 		7DD10827165D4132005BA0E1 /* Products */ = {

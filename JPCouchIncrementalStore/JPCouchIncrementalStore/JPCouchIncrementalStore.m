@@ -15,14 +15,14 @@
 
 @interface JPCouchIncrementalStore ()
 
-@property (nonatomic, retain) NSNumber *replicationInterval;
-@property (nonatomic, retain) NSURL *canonicalStoreURL;
+@property (nonatomic) NSNumber *replicationInterval;
+@property (nonatomic) NSURL *canonicalStoreURL;
 
-@property (nonatomic, retain) TD_Database *couchDB;
+@property (nonatomic) TD_Database *couchDB;
 
-@property (nonatomic, retain) NSCache *cachedPropertiesForObjects;
+@property (nonatomic) NSCache *cachedPropertiesForObjects;
 
-@property (nonatomic, retain) JPCouchConflictResolver *defaultConflictResolver;
+@property (nonatomic) JPCouchConflictResolver *defaultConflictResolver;
 
 @end
 
@@ -95,10 +95,10 @@ NSString * const JPCouchIncrementalStoreCDRelationshipFormatPropertyName = @"com
 
 - (void)dealloc
 {
-	if([self couchDB])
+	if(_couchDB)
 	{
-		[[self couchDB] compact];
-		[[self couchDB] close];
+		[_couchDB compact];
+		[_couchDB close];
 	}
 }
 
@@ -313,7 +313,6 @@ NSString * const JPCouchIncrementalStoreCDRelationshipFormatPropertyName = @"com
 			TDStatus status;
 			TD_Revision* result = [[self couchDB] putRevision: rev prevRevisionID:previousRevision allowConflict: NO status: &status];
 			NSLog(@"deleted result = %@", result);
-			
 		}
 	}
 	
