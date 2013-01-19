@@ -269,7 +269,7 @@ NSString * const JPCouchIncrementalStoreCDRelationshipFormatPropertyName = @"com
 		
 		if(status == kTDStatusConflict)
 		{
-//			[self handleConflictForManagedObject:insertedObject proposedValues:attributeValues];
+			[self handleConflictForManagedObject:insertedObject proposedValues:attributeValues];
 		}
 		
 		if(status != kTDStatusCreated)
@@ -294,7 +294,7 @@ NSString * const JPCouchIncrementalStoreCDRelationshipFormatPropertyName = @"com
 			TD_Revision* result = [[self couchDB] putRevision: rev prevRevisionID:previousRevision allowConflict: NO status: &status];
 			if(status == kTDStatusConflict)
 			{
-//				[self handleConflictForManagedObject:couchUpdatedObject proposedValues:attributeValues];
+				[self handleConflictForManagedObject:couchUpdatedObject proposedValues:attributeValues];
 			}
 			[updatedObject setValue:result.revID forKey:@"revisionID"];
 		}
@@ -483,7 +483,9 @@ static NSDateFormatter * dateFormatter()
 
 #pragma mark - conflicts
 
-
-
+- (void)handleConflictForManagedObject:(NSManagedObject *)managedObject proposedValues:(id)proposedValues
+{
+	
+}
 
 @end
